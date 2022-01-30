@@ -1,9 +1,16 @@
 import { Context } from '@cryptostats/sdk';
 
+let ethPrice = null;
+
 export function setup(sdk: Context) {
+  const getEthPrice = async () => {
+    if (!ethPrice) ethPrice = await sdk.coinGecko.getCurrentPrice('ethereum');
+    return ethPrice;
+  };
+
   const getFeeResolverForCost = (gasAmt: number) => async () => {
     const gasData = await sdk.http.get('https://app.defisaver.com/api/gas-price/current');
-    const ethPrice = await sdk.coinGecko.getCurrentPrice('ethereum');
+    const ethPrice = await getEthPrice();
     return (gasData.regular * gasAmt * ethPrice) / 1e9;
   };
 
@@ -12,7 +19,19 @@ export function setup(sdk: Context) {
     queries: {
       feeTransferEth: getFeeResolverForCost(21000),
       feeTransferERC20: getFeeResolverForCost(48000),
-      feeSwap: getFeeResolverForCost(105000),
+      feeUniswapV3SwapEthToUsdc: getFeeResolverForCost(144348),
+      feeUniswapV3AddLiquidityEthUsdc: getFeeResolverForCost(263442),
+      feeUniswapV3RemoveLiquidityEthUsdc: getFeeResolverForCost(262926),
+      fee1inchSwapEthToUsdc: getFeeResolverForCost(107125),
+      feeSushiSwapEthToUsdc: getFeeResolverForCost(117458),
+      feeMatchaEthUsdc: getFeeResolverForCost(141374),
+      feeHopSendEth: getFeeResolverForCost(124062),
+      feexPollinateSendEth: getFeeResolverForCost(99234),
+      feeAaveV2DepositEth: getFeeResolverForCost(240970),
+      feeAaveV2WithdrawEth: getFeeResolverForCost(902530),
+      feeAaveV2BarrowEth: getFeeResolverForCost(454266),
+      feeTorrnaoCashDepositEth: getFeeResolverForCost(952910),
+      feeTorrnaoCashWithdrawEth: getFeeResolverForCost(376482),
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader(

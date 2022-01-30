@@ -45,7 +45,9 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         <a href="https://cryptofees.info">CryptoFees.info</a>
         {' + '}
         <a href="https://l2beat.com">L2Beat.com</a>
-        {' = ❤️'}
+        {' + '}
+        Gasnow.org
+        {' = ❤️❤️❤️'}
       </p>
 
       <Button Icon={GTCIcon} target="gitcoin" href="https://gitcoin.co/grants/1624/cryptofeesinfo">
@@ -57,6 +59,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           { value: 'feeTransferEth', label: 'Transfer ETH' },
           { value: 'feeTransferERC20', label: 'Transfer tokens' },
           { value: 'feeSwap', label: 'Swap tokens' },
+          { value: 'feeUniswapSwap', label: 'Swap tokens with Uniswap' },
         ]}
         selected={type}
         onChange={setType}
@@ -109,7 +112,24 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   await list.fetchAdapters();
 
   const data = await list.executeQueriesWithMetadata(
-    ['feeTransferEth', 'feeTransferERC20', 'feeSwap'],
+    [
+      'feeTransferEth',
+      'feeTransferERC20',
+      'feeSwap',
+      'feeUniswapV3SwapEthToUsdc',
+      'feeUniswapV3AddLiquidityEthUsdc',
+      'feeUniswapV3RemoveLiquidityEthUsdc',
+      'fee1inchSwapEthToUsdc',
+      'feeSushiSwapEthToUsdc',
+      'feeMatchaEthUsdc',
+      'feeHopSendEth',
+      'feexPollinateSendEth',
+      'feeAaveV2DepositEth',
+      'feeAaveV2WithdrawEth',
+      'feeAaveV2BarrowEth',
+      'feeTorrnaoCashDepositEth',
+      'feeTorrnaoCashWithdrawEth',
+    ],
     { allowMissingQuery: true }
   );
 

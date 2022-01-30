@@ -10,6 +10,7 @@ const headers: { [key: string]: string } = {
   feeTransferEth: 'Current cost to transfer ETH',
   feeTransferERC20: 'Current cost to transfer tokens',
   feeSwap: 'Current cost to swap tokens',
+  feeUniswapSwap: 'Current cost to swap tokens with Uniswap',
 };
 
 const List: React.FC<ListProps> = ({ data, query }) => {

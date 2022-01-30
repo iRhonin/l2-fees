@@ -3,7 +3,6 @@ import { Context } from '@cryptostats/sdk';
 export function setup(sdk: Context) {
   const getFeeForTransfer = async () => {
     const feeData = await sdk.http.get('https://api.aztec.network/falafel-mainnet/status');
-
     return feeData.txFees[1].baseFeeQuotes[0].fee / 1e18;
   };
 
