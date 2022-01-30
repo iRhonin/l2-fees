@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import ReactGA from 'react-ga4';
 import DetailsCard from './DetailsCard';
 import RowName from './RowName';
 
@@ -24,11 +23,6 @@ const Row: React.FC<RowProps> = ({ protocol }) => {
         onClick={(e: any) => {
           e.preventDefault();
           setOpen(toggle);
-          ReactGA.event({
-            category: 'Navigation',
-            action: open ? 'Close details' : 'Open details',
-            label: protocol.name,
-          });
         }}
         className={`item ${isApp ? 'app' : ''} ${open ? 'open' : ''}`}
         style={{

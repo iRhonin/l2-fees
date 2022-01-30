@@ -1,7 +1,7 @@
 import eth from './eth.svg';
 import usdc from './usdc.svg';
 import swap from './swap.svg';
-import uniswap_v3 from './uniswap-v3.svg';
+import uniswap from './uniswap.svg';
 import sushiswap from './sushiswap.svg';
 import oneinch from './1inch.png';
 import matcha from './matcha.webp';
@@ -15,7 +15,7 @@ const icons: { [id: string]: string } = {
   eth,
   usdc,
   swap,
-  uniswap_v3,
+  uniswap,
   sushiswap,
   oneinch,
   matcha,

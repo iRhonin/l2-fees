@@ -3,7 +3,7 @@ import React from 'react';
 const Header = () => {
   return (
     <header>
-      <ul className="header-links">
+      {/* <ul className="header-links">
         <li className="header-link">
           <li className="header-link">
             <a href="https://l2fees.info/">l2fees.info</a>
@@ -42,7 +42,7 @@ const Header = () => {
             </li>
           </ul>
         </li>
-      </ul>
+      </ul> */}
 
       <style jsx>{`
         .header-links {

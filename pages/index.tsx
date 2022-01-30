@@ -3,49 +3,41 @@ import { NextPage, GetStaticProps } from 'next';
 import 'data/adapters';
 import sdk from 'data/sdk';
 import List from 'components/List';
-import Button from 'components/Button';
 import SocialTags from 'components/SocialTags';
-import gtc from 'components/icons/gtc.svg';
+import { FormControlLabel, Switch } from '@material-ui/core';
 
 interface HomeProps {
   data: any[];
 }
 
-const GTCIcon: React.FC = () => (
-  <div className="gtc">
-    <style jsx>{`
-      .gtc {
-        background: url('${gtc}');
-        height: 18px;
-        width: 18px;
-        margin-right: 2px;
-        flex: 0 0 18px;
-      }
-    `}</style>
-  </div>
-);
-
 export const Home: NextPage<HomeProps> = ({ data }) => {
+  const [showRatio, setShowRatio] = React.useState(false);
+
   return (
     <main>
       <SocialTags />
 
       <h1 className="title">L1 vs L2s</h1>
-
-      {/* <p className="description">More L1 vs L2s comparison</p> */}
-
       <p className="heart">
         <a href="https://l2fees.info">l2fees.info</a>
         {' + '}
         Gasnow.org
         {' = ❤️'}
       </p>
+      <div>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={showRatio}
+              onChange={(e) => setShowRatio(e.target.checked)}
+              name="showRatio"
+            />
+          }
+          label="Show how much cheaper L2s are"
+        />
+      </div>
 
-      <Button Icon={GTCIcon} target="gitcoin" href="https://gitcoin.co/grants/1624/cryptofeesinfo">
-        Support CryptoFees.info on Gitcoin
-      </Button>
-
-      <List data={data} />
+      <List data={data} showRatio={showRatio} />
 
       <style jsx>{`
         main {
@@ -81,6 +73,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           margin: 0 0 18px 0;
           font-size: 18px;
           font-style: italic;
+          display: flex;
         }
       `}</style>
     </main>
@@ -97,16 +90,16 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       'feeUniswapV3SwapEthToUsdc',
       'feeUniswapV3AddLiquidityEthUsdc',
       'feeUniswapV3RemoveLiquidityEthUsdc',
-      'fee1inchSwapEthToUsdc',
-      'feeSushiSwapEthToUsdc',
-      'feeMatchaEthUsdc',
+      'feeTorrnaoCashDepositEth',
+      'feeTorrnaoCashWithdrawEth',
       'feeHopSendEth',
       'feexPollinateSendEth',
+      'feeSushiSwapEthToUsdc',
+      'feeMatchaEthUsdc',
       'feeAaveV2DepositEth',
       'feeAaveV2WithdrawEth',
       'feeAaveV2BarrowEth',
-      'feeTorrnaoCashDepositEth',
-      'feeTorrnaoCashWithdrawEth',
+      'fee1inchSwapEthToUsdc',
     ],
     { allowMissingQuery: true }
   );

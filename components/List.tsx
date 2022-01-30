@@ -6,10 +6,6 @@ import Row from './Row';
 import icons from './icons';
 import SimpleRow from './SimpleRow';
 
-interface ListProps {
-  data: any[];
-}
-
 interface TransactionType {
   name: string;
   labels: Array<string>;
@@ -85,6 +81,18 @@ const Transactions: { [key: string]: TransactionType } = {
     interaction: 'Bridge ETH',
     icon: '',
   },
+  feeTorrnaoCashDepositEth: {
+    name: 'TorrnadoCash',
+    labels: ['Anonymous-Transfer'],
+    interaction: 'Deposit ETH',
+    icon: '',
+  },
+  feeTorrnaoCashWithdrawEth: {
+    name: 'TorrnadoCash',
+    labels: ['Anonymous-Transfer'],
+    interaction: 'Withdraw ETH',
+    icon: '',
+  },
   feeAaveV2DepositEth: {
     name: 'Aave',
     labels: ['Lending'],
@@ -103,22 +111,16 @@ const Transactions: { [key: string]: TransactionType } = {
     interaction: 'Barrow ETH',
     icon: '',
   },
-  feeTorrnaoCashDepositEth: {
-    name: 'TorrnadoCash',
-    labels: ['Anonymous-Transfer'],
-    interaction: 'Deposit ETH',
-    icon: '',
-  },
-  feeTorrnaoCashWithdrawEth: {
-    name: 'TorrnadoCash',
-    labels: ['Anonymous-Transfer'],
-    interaction: 'Withdraw ETH',
-    icon: '',
-  },
 };
 
-const List: React.FC<ListProps> = ({ data }) => {
+interface ListProps {
+  data: any[];
+  showRatio: boolean;
+}
+
+const List: React.FC<ListProps> = ({ data, showRatio }) => {
   const aggregatedData = useMemo(() => {
+    const refrenceNetwork = data.find((n) => n.id === 'ethereum');
     const _data: { [key: string]: TransactionType } = {};
 
     data.forEach((network) => {
@@ -129,14 +131,19 @@ const List: React.FC<ListProps> = ({ data }) => {
           interaction: Transactions[q].interaction,
         };
 
-        _data[q][network.metadata.l2BeatSlug] =
+        if (
           network.results[q] === null ||
           network.results[q] === undefined ||
           network.results[q] === ''
-            ? '-'
-            : network.results[q] > 0.01
-            ? '$' + network.results[q].toFixed(2)
-            : '< $0.01';
+        )
+          _data[q][network.metadata.l2BeatSlug] = '-';
+        else if (!showRatio) {
+          _data[q][network.metadata.l2BeatSlug] =
+            network.results[q] > 0.01 ? '$' + network.results[q].toFixed(2) : '< $0.01';
+        } else {
+          _data[q][network.metadata.l2BeatSlug] =
+            (refrenceNetwork.results[q] / network.results[q]).toFixed(2) + 'X';
+        }
       }
     });
 
@@ -147,7 +154,7 @@ const List: React.FC<ListProps> = ({ data }) => {
     });
 
     return Object.values(result);
-  }, [data]);
+  }, [data, showRatio]);
 
   const columns = React.useMemo(
     () => [
