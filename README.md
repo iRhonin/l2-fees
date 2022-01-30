@@ -1,6 +1,6 @@
 # L2now.info
 
-This is a fork of [L2fees.info](https://L2fees.info) with more transaction type, smt like old gasnow.org.
+This is a fork of [L2fees.info](https://L2fees.info) with more transaction types, smt like old gasnow.org.
 
 **Looking for the adapters? Want to improve the data?**
 
