@@ -5,7 +5,9 @@ const Header = () => {
     <header>
       <ul className="header-links">
         <li className="header-link">
-          <div>l2fees.info</div>
+          <li className="header-link">
+            <a href="https://l2fees.info/">l2fees.info</a>
+          </li>
         </li>
         <li className="header-link">
           <a href="https://cryptofees.info/">cryptofees.info</a>

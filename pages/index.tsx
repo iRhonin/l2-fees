@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NextPage, GetStaticProps } from 'next';
 import 'data/adapters';
 import sdk from 'data/sdk';
 import List from 'components/List';
 import Button from 'components/Button';
 import SocialTags from 'components/SocialTags';
-import ToggleBar from 'components/ToggleBar';
 import gtc from 'components/icons/gtc.svg';
 
 interface HomeProps {
@@ -27,45 +26,26 @@ const GTCIcon: React.FC = () => (
 );
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
-  const [type, setType] = useState('feeTransferEth');
-
   return (
     <main>
       <SocialTags />
 
-      <h1 className="title">L2 Fees</h1>
+      <h1 className="title">L1 vs L2s</h1>
 
-      <p className="description">
-        Ethereum Layer-1 is expensive.
-        <br />
-        How much does it cost to use Layer-2?
-      </p>
+      {/* <p className="description">More L1 vs L2s comparison</p> */}
 
       <p className="heart">
-        <a href="https://cryptofees.info">CryptoFees.info</a>
-        {' + '}
-        <a href="https://l2beat.com">L2Beat.com</a>
+        <a href="https://l2fees.info">l2fees.info</a>
         {' + '}
         Gasnow.org
-        {' = ❤️❤️❤️'}
+        {' = ❤️'}
       </p>
 
       <Button Icon={GTCIcon} target="gitcoin" href="https://gitcoin.co/grants/1624/cryptofeesinfo">
-        Support us on Gitcoin
+        Support CryptoFees.info on Gitcoin
       </Button>
 
-      <ToggleBar
-        options={[
-          { value: 'feeTransferEth', label: 'Transfer ETH' },
-          { value: 'feeTransferERC20', label: 'Transfer tokens' },
-          { value: 'feeSwap', label: 'Swap tokens' },
-          { value: 'feeUniswapSwap', label: 'Swap tokens with Uniswap' },
-        ]}
-        selected={type}
-        onChange={setType}
-      />
-
-      <List data={data} query={type} />
+      <List data={data} />
 
       <style jsx>{`
         main {
@@ -109,8 +89,6 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const list = sdk.getList('l2-fees');
-  await list.fetchAdapters();
-
   const data = await list.executeQueriesWithMetadata(
     [
       'feeTransferEth',

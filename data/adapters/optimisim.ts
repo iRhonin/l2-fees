@@ -13,6 +13,7 @@ Where:
 */
 
 import { Context } from '@cryptostats/sdk';
+import { getEthPrice } from './utils';
 
 export function setup(sdk: Context) {
   const OP_GAS_PREDEPLOY = '0x420000000000000000000000000000000000000F';
@@ -54,9 +55,7 @@ export function setup(sdk: Context) {
         data: '0x',
       })
     );
-    const totalGasCostWei = l2GasPrice.mul(l2GasEstimate).add(l1GasCost).toNumber();
-    const ethPrice = await sdk.coinGecko.getCurrentPrice('ethereum');
-    return (totalGasCostWei * ethPrice) / 1e18;
+    return await calcTotalGasFee(l2GasPrice, l2GasEstimate, l1GasCost);
   };
 
   const getTransferTokenCost = async () => {
@@ -213,7 +212,7 @@ export function setup(sdk: Context) {
   };
 
   sdk.register({
-    id: 'optimistic-ethereum-plus',
+    id: 'optimistic-ethereum',
     queries: {
       feeTransferEth: getTransferEthCost,
       feeTransferERC20: getTransferTokenCost,
@@ -252,7 +251,7 @@ export function setup(sdk: Context) {
 
   async function calcTotalGasFee(l2GasPrice, l2GasEstimate: number, l1GasCost: any) {
     const totalGasCostWei = l2GasPrice.mul(l2GasEstimate).add(l1GasCost).toNumber();
-    const ethPrice = await sdk.coinGecko.getCurrentPrice('ethereum');
+    const ethPrice = await getEthPrice(sdk);
     return (totalGasCostWei * ethPrice) / 1e18;
   }
 }

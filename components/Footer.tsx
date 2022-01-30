@@ -6,18 +6,14 @@ const Footer: React.FC = () => {
       <div>Data updates continuously</div>
 
       <div>
-        Powered by <a href="https://cryptostats.community">CryptoStats</a>
+        💪 Powered by <a href="https://cryptostats.community">CryptoStats</a>
+        {' | '}
+        ❤️ Fork of <a href="https://l2fees.info">l2fees.info</a>
+        {' | '}
+        <a href="https://github.com/iRhonin/l2-now">GitHub</a>
       </div>
 
-      <div>
-        <a href="https://forum.cryptostats.community">Request Project</a>
-        {' | '}
-        <a href="https://t.me/+VNTjwOvI-W40Y2E5">Join our Telegram</a>
-        {' | '}
-        <a href="https://github.com/dmihal/l2-fees">GitHub</a>
-      </div>
-
-      <div>
+      {/* <div>
         <b>l2fees.info</b>
         {' | '}
         <a href="https://cryptofees.info">cryptofees.info</a>
@@ -27,7 +23,7 @@ const Footer: React.FC = () => {
         <a href="https://money-movers.info">money-movers.info</a>
         {' | '}
         <a href="https://openorgs.info">openorgs.info</a>
-      </div>
+      </div> */}
       <style jsx>{`
         footer {
           text-align: center;

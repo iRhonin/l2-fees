@@ -1,37 +1,21 @@
 import React, { Fragment, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import ReactGA from 'react-ga4';
-import { ChevronDown, ChevronUp } from 'react-feather';
 import DetailsCard from './DetailsCard';
 import RowName from './RowName';
-import Flags from './Flags';
 
 interface RowProps {
   protocol: any;
-  query: string;
 }
 
 const toggle = (isOpen: boolean) => !isOpen;
 
 const cardHeight = 600;
 
-const Row: React.FC<RowProps> = ({ protocol, query }) => {
+const Row: React.FC<RowProps> = ({ protocol }) => {
   const [open, setOpen] = useState(false);
 
   const isApp = protocol.metadata.category !== 'l1';
-
-  const amount =
-    protocol.results[query] < 0.01
-      ? '< $0.01'
-      : protocol.results[query]?.toLocaleString('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        });
-
-  const flags = {
-    ...protocol.metadata.flags,
-    ...(protocol.metadata.flagsByQuery || {})[query],
-  };
 
   return (
     <Fragment>
@@ -57,10 +41,7 @@ const Row: React.FC<RowProps> = ({ protocol, query }) => {
             shortName={protocol.metadata.shortName}
             subtitle={protocol.metadata.subtitle}
           />
-          <Flags flags={flags} />
         </div>
-        <div className="amount">{amount}</div>
-        <div className="arrow">{open ? <ChevronUp /> : <ChevronDown />}</div>
       </a>
 
       <CSSTransition in={open} timeout={500} unmountOnExit>
@@ -72,8 +53,7 @@ const Row: React.FC<RowProps> = ({ protocol, query }) => {
         .item {
           display: flex;
           padding: 0 4px;
-          background-color: #fff;
-          font-size: 18px;
+          /* background-color: #fff; */
           background-repeat: no-repeat;
           background-position: 10px center;
           background-size: 20px 20px;
@@ -84,14 +64,14 @@ const Row: React.FC<RowProps> = ({ protocol, query }) => {
           height: 54px;
         }
         .item:hover {
-          background-color: #f5f5f5;
+          /* background-color: #f5f5f5; */
         }
 
         .item.app {
-          background-color: #fad3f6;
+          /* background-color: #fad3f6; */
         }
         .item.app:hover {
-          background-color: #f8c3f3;
+          /* background-color: #f8c3f3; */
         }
 
         .row-name {

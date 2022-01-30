@@ -1,16 +1,10 @@
 import { Context } from '@cryptostats/sdk';
-
-let ethPrice = null;
+import { getEthPrice } from './utils';
 
 export function setup(sdk: Context) {
-  const getEthPrice = async () => {
-    if (!ethPrice) ethPrice = await sdk.coinGecko.getCurrentPrice('ethereum');
-    return ethPrice;
-  };
-
   const getFeeResolverForCost = (gasAmt: number) => async () => {
     const gasData = await sdk.http.get('https://app.defisaver.com/api/gas-price/current');
-    const ethPrice = await getEthPrice();
+    const ethPrice = await getEthPrice(sdk);
     return (gasData.regular * gasAmt * ethPrice) / 1e9;
   };
 
@@ -18,6 +12,7 @@ export function setup(sdk: Context) {
     id: 'ethereum',
     queries: {
       feeTransferEth: getFeeResolverForCost(21000),
+      feeSwap: getFeeResolverForCost(48000),
       feeTransferERC20: getFeeResolverForCost(48000),
       feeUniswapV3SwapEthToUsdc: getFeeResolverForCost(144348),
       feeUniswapV3AddLiquidityEthUsdc: getFeeResolverForCost(263442),
@@ -40,6 +35,7 @@ export function setup(sdk: Context) {
       ),
       category: 'l1',
       name: 'Ethereum',
+      l2BeatSlug: 'ethereum',
       description: 'Ethereum is the base layer-1 chain.',
       website: 'https://ethereum.org',
     },

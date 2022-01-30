@@ -1,4 +1,5 @@
 import { Context } from '@cryptostats/sdk';
+import { getEthPrice } from './utils';
 
 const ARB_GAS_PRECOMPILE = '0x000000000000000000000000000000000000006C';
 
@@ -6,14 +7,7 @@ const ARB_GAS_ABI = [
   'function getPricesInWei() external view returns (uint256,uint256,uint256,uint256,uint256,uint256)',
 ];
 
-let ethPrice = null;
-
 export function setup(sdk: Context) {
-  const getEthPrice = async () => {
-    if (!ethPrice) ethPrice = await sdk.coinGecko.getCurrentPrice('ethereum');
-    return ethPrice;
-  };
-
   const getFeeResolverForCost = (gasAmt: number) => async () => {
     const gasPrecompileContract = sdk.ethers.getContract(
       ARB_GAS_PRECOMPILE,
@@ -22,15 +16,16 @@ export function setup(sdk: Context) {
     );
 
     const weiPerArbGas = (await gasPrecompileContract.getPricesInWei())[5];
-    const ethPrice = await getEthPrice();
+    const ethPrice = await getEthPrice(sdk);
     return (weiPerArbGas * gasAmt * ethPrice) / 1e18;
   };
 
   sdk.plugins;
   sdk.register({
-    id: 'arbitrum-one-plus',
+    id: 'arbitrum-one',
     queries: {
       feeTransferEth: getFeeResolverForCost(412620),
+      feeSwap: getFeeResolverForCost(708377),
       feeTransferERC20: getFeeResolverForCost(708377),
       feeUniswapV3SwapEthToUsdc: getFeeResolverForCost(665117),
       feeUniswapV3AddLiquidityEthUsdc: getFeeResolverForCost(1734848),
