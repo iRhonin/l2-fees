@@ -15,6 +15,7 @@ interface TransactionType {
   labels: Array<string>;
   interaction: string;
   icon: string;
+  subRows?: TransactionType;
 }
 
 const Transactions: { [key: string]: TransactionType } = {
@@ -118,7 +119,7 @@ const Transactions: { [key: string]: TransactionType } = {
 
 const List: React.FC<ListProps> = ({ data }) => {
   const aggregatedData = useMemo(() => {
-    const _data = {};
+    const _data: { [key: string]: TransactionType } = {};
 
     data.forEach((network) => {
       for (const q in network.results) {
