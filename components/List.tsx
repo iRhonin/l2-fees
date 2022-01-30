@@ -191,8 +191,10 @@ const List: React.FC<ListProps> = ({ data }) => {
                 icon={
                   props.value === '1inch'
                     ? icons.oneinch
+                    : props.value === 'Uniswap V3'
+                    ? icons.uniswap
                     : props.value
-                    ? icons[props.value.replaceAll(' ', '_').toLowerCase()]
+                    ? icons[props.value.toLowerCase()]
                     : ''
                 }
               />
