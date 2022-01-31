@@ -62,12 +62,12 @@ const Transactions: { [key: string]: TransactionType } = {
     interaction: 'Bridge ETH',
   },
   feeTorrnaoCashDepositEth: {
-    name: 'TorrnadoCash',
+    name: 'TornadoCash',
     labels: ['Anonymous-Transfer'],
     interaction: 'Deposit ETH',
   },
   feeTorrnaoCashWithdrawEth: {
-    name: 'TorrnadoCash',
+    name: 'TornadoCash',
     labels: ['Anonymous-Transfer'],
     interaction: 'Withdraw ETH',
   },

@@ -8,7 +8,7 @@ import Matcha from './matcha.webp';
 import Hop from './hop.png';
 import xPollinate from './xpollinate.png';
 import Aave from './aave.svg';
-import TorrnadoCash from './torrnadocash.png';
+import TornadoCash from './tornadocash.png';
 import Synthetix from './synthetix.svg';
 
 // Legacy, don't add new icons here
@@ -23,7 +23,7 @@ const icons: { [id: string]: string } = {
   Hop,
   xPollinate,
   Aave,
-  TorrnadoCash,
+  TornadoCash,
   Synthetix,
 };
 
