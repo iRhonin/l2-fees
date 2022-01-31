@@ -23,7 +23,7 @@ const SimpleRow: React.FC<SimpleRowProps> = ({ name, icon }) => {
           display: flex;
           padding: 0 4px;
           /* background-color: #fff; */
-          font-size: 18px;
+          font-size: 1em;
           background-repeat: no-repeat;
           background-position: 10px center;
           background-size: 20px 20px;

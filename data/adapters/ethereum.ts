@@ -27,6 +27,9 @@ export function setup(sdk: Context) {
       feeAaveV2BarrowEth: getFeeResolverForCost(454266),
       feeTorrnaoCashDepositEth: getFeeResolverForCost(952910),
       feeTorrnaoCashWithdrawEth: getFeeResolverForCost(376482),
+      feeSynthetixMintSusd: getFeeResolverForCost(446358),
+      feeSynthetixBurnSusd: getFeeResolverForCost(502800),
+      feeSynthetixClaimFees: getFeeResolverForCost(489779),
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader(

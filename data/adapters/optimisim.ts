@@ -211,6 +211,54 @@ export function setup(sdk: Context) {
     return await calcTotalGasFee(l2GasPrice, l2GasEstimate, l1GasCost);
   };
 
+  const getSynthetixMintSusd = async () => {
+    const l2GasPrice = await provider.getGasPrice();
+    const l2GasEstimate = 612946;
+    const l1GasCost = await gasPredeployContract.getL1Fee(
+      sdk.ethers.utils.serializeTransaction({
+        nonce: 1234,
+        value: '0x',
+        gasPrice: l2GasPrice,
+        gasLimit: l2GasEstimate,
+        to: '0x8700daec35af8ff88c16bdf0418774cb3d7599b4',
+        data: '0xaf086c7e',
+      })
+    );
+    return await calcTotalGasFee(l2GasPrice, l2GasEstimate, l1GasCost);
+  };
+
+  const getSynthetixBurnSusd = async () => {
+    const l2GasPrice = await provider.getGasPrice();
+    const l2GasEstimate = 745074;
+    const l1GasCost = await gasPredeployContract.getL1Fee(
+      sdk.ethers.utils.serializeTransaction({
+        nonce: 1234,
+        value: '0x',
+        gasPrice: l2GasPrice,
+        gasLimit: l2GasEstimate,
+        to: '0x8700daec35af8ff88c16bdf0418774cb3d7599b4',
+        data: '0x295da87d00000000000000000000000000000000000000000000000c5756e7e77fe544ba',
+      })
+    );
+    return await calcTotalGasFee(l2GasPrice, l2GasEstimate, l1GasCost);
+  };
+
+  const getSynthetixClaimFees = async () => {
+    const l2GasPrice = await provider.getGasPrice();
+    const l2GasEstimate = 790005;
+    const l1GasCost = await gasPredeployContract.getL1Fee(
+      sdk.ethers.utils.serializeTransaction({
+        nonce: 1234,
+        value: '0x',
+        gasPrice: l2GasPrice,
+        gasLimit: l2GasEstimate,
+        to: '0x4a16a42407aa491564643e1dfc1fd50af29794ef',
+        data: '0xd294f093',
+      })
+    );
+    return await calcTotalGasFee(l2GasPrice, l2GasEstimate, l1GasCost);
+  };
+
   sdk.register({
     id: 'optimistic-ethereum',
     queries: {
@@ -230,6 +278,9 @@ export function setup(sdk: Context) {
       // //   feeAaveV2BarrowEth: getFeeResolverForCost(454266),
       feeTorrnaoCashDepositEth: getTorrnaoCashDepositEth,
       feeTorrnaoCashWithdrawEth: getTorrnaoCashWithdrawEth,
+      feeSynthetixMintSusd: getSynthetixMintSusd,
+      feeSynthetixBurnSusd: getSynthetixBurnSusd,
+      feeSynthetixClaimFees: getSynthetixClaimFees,
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader(

@@ -21,11 +21,11 @@ const StyledTableCell = withStyles(() => ({
   head: {
     backgroundColor: '#ddd',
     color: '#222',
-    fontSize: 18,
+    fontSize: '1.2em',
     borderRight: 1,
   },
   body: {
-    fontSize: 18,
+    fontSize: '1.2em',
   },
 }))(TableCell);
 
@@ -43,15 +43,13 @@ function Table({ columns, data }) {
   return (
     <MaUTable {...getTableProps()}>
       <TableHead>
-        {headerGroups.map((headerGroup) => (
-          <TableRow key={headerGroup} {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <StyledTableCell key={column} align="center" {...column.getHeaderProps()}>
-                {column.render('Header')}
-              </StyledTableCell>
-            ))}
-          </TableRow>
-        ))}
+        <TableRow key={headerGroups[1]} {...headerGroups[1].getHeaderGroupProps()}>
+          {headerGroups[1].headers.map((column) => (
+            <StyledTableCell key={column} align="center" {...column.getHeaderProps()}>
+              {column.render('Header')}
+            </StyledTableCell>
+          ))}
+        </TableRow>
       </TableHead>
       <TableBody>
         {rows.map((row) => {

@@ -27,7 +27,7 @@ const RowName: React.FC<RowNameProps> = ({ name, shortName, subtitle }) => {
 
         @media (max-width: 700px) {
           .name {
-            font-size: 14px;
+            font-size: 1.2em;
             padding: 0;
           }
           .short-name {

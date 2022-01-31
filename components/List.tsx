@@ -108,15 +108,6 @@ const List: React.FC<ListProps> = ({ data, showRatio }) => {
   return (
     <div className="list">
       <Table columns={columns} data={aggregatedData} />
-      {/* <div className="header">
-        <div className="name">Name</div>
-        <div className="amount">{headers[query]}</div>
-      </div>
-
-
-      {sortedData.map((protocol: any) => (
-        <Row protocol={protocol} key={protocol.id} query={query} />
-      ))} */}
 
       <style jsx>{`
         .list {

@@ -86,6 +86,21 @@ const Transactions: { [key: string]: TransactionType } = {
     labels: ['Lending'],
     interaction: 'Barrow ETH',
   },
+  feeSynthetixMintSusd: {
+    name: 'Synthetix',
+    labels: ['Derivatives'],
+    interaction: 'Mint sUsd',
+  },
+  feeSynthetixBurnSusd: {
+    name: 'Synthetix',
+    labels: ['Derivatives'],
+    interaction: 'Burn sUsd',
+  },
+  feeSynthetixClaimFees: {
+    name: 'Synthetix',
+    labels: ['Derivatives'],
+    interaction: 'Claim Fees',
+  },
 };
 
 export default Transactions;
