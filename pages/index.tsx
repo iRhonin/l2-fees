@@ -5,6 +5,7 @@ import sdk from 'data/sdk';
 import List from 'components/List';
 import SocialTags from 'components/SocialTags';
 import { FormControlLabel, Switch } from '@material-ui/core';
+import queries from 'data/queries';
 
 interface HomeProps {
   data: any[];
@@ -82,28 +83,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const list = sdk.getList('l2-fees');
-  const data = await list.executeQueriesWithMetadata(
-    [
-      'feeTransferEth',
-      'feeTransferERC20',
-      'feeSwap',
-      'feeUniswapV3SwapEthToUsdc',
-      'feeUniswapV3AddLiquidityEthUsdc',
-      'feeUniswapV3RemoveLiquidityEthUsdc',
-      'feeTorrnaoCashDepositEth',
-      'feeTorrnaoCashWithdrawEth',
-      'feeHopSendEth',
-      'feexPollinateSendEth',
-      'feeSushiSwapEthToUsdc',
-      'feeMatchaEthUsdc',
-      'feeAaveV2DepositEth',
-      'feeAaveV2WithdrawEth',
-      'feeAaveV2BarrowEth',
-      'fee1inchSwapEthToUsdc',
-    ],
-    { allowMissingQuery: true }
-  );
-
+  const data = await list.executeQueriesWithMetadata(queries, { allowMissingQuery: true });
   return { props: { data }, revalidate: 5 * 60 };
 };
 

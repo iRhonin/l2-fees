@@ -12,17 +12,17 @@ import torrnadocash from './torrnadocash.png';
 
 // Legacy, don't add new icons here
 const icons: { [id: string]: string } = {
-  eth,
-  usdc,
-  swap,
-  uniswap,
-  sushiswap,
-  oneinch,
-  matcha,
-  hop,
-  xpollinate,
-  aave,
-  torrnadocash,
+  ETH: eth,
+  USDC: usdc,
+  Swap: swap,
+  'Uniswap V3': uniswap,
+  SushiSwap: sushiswap,
+  '1inch': oneinch,
+  Matcha: matcha,
+  Hop: hop,
+  xPollinate: xpollinate,
+  Aave: aave,
+  TorrnadoCash: torrnadocash,
 };
 
 export default icons;

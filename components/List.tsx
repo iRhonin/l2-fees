@@ -3,115 +3,9 @@ import Table from './Table';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import Row from './Row';
-import icons from './icons';
 import SimpleRow from './SimpleRow';
-
-interface TransactionType {
-  name: string;
-  labels: Array<string>;
-  interaction: string;
-  icon: string;
-  subRows?: TransactionType;
-}
-
-const Transactions: { [key: string]: TransactionType } = {
-  feeTransferEth: {
-    name: 'ETH',
-    labels: [''],
-    interaction: 'Transfer',
-    icon: '',
-  },
-  feeTransferERC20: {
-    name: 'USDC',
-    labels: ['ERC20'],
-    interaction: 'Transfer',
-    icon: '',
-  },
-  feeSwap: {
-    name: 'Swap',
-    labels: ['DEX'],
-    interaction: 'Swap ETH+USDC',
-    icon: '',
-  },
-  feeUniswapV3SwapEthToUsdc: {
-    name: 'Uniswap V3',
-    labels: ['AMM', 'DEX'],
-    interaction: 'Swap ETH+USDC',
-    icon: '',
-  },
-  feeUniswapV3AddLiquidityEthUsdc: {
-    name: 'Uniswap V3',
-    labels: ['AMM', 'DEX'],
-    interaction: 'Add ETH+USDC',
-    icon: '',
-  },
-  feeUniswapV3RemoveLiquidityEthUsdc: {
-    name: 'Uniswap V3',
-    labels: ['AMM', 'DEX'],
-    interaction: 'Remove ETH+USDC',
-    icon: '',
-  },
-  fee1inchSwapEthToUsdc: {
-    name: '1inch',
-    labels: ['DEX'],
-    interaction: 'Swap ETH+USDC',
-    icon: '',
-  },
-  feeSushiSwapEthToUsdc: {
-    name: 'SushiSwap',
-    labels: ['DEX'],
-    interaction: 'Swap ETH+USDC',
-    icon: '',
-  },
-  feeMatchaEthUsdc: {
-    name: 'Matcha',
-    labels: ['DEX'],
-    interaction: 'Swap ETH+USDC',
-    icon: '',
-  },
-  feeHopSendEth: {
-    name: 'Hop',
-    labels: ['Bridge'],
-    interaction: 'Bridge ETH',
-    icon: '',
-  },
-  feexPollinateSendEth: {
-    name: 'xPollinate',
-    labels: ['Bridge'],
-    interaction: 'Bridge ETH',
-    icon: '',
-  },
-  feeTorrnaoCashDepositEth: {
-    name: 'TorrnadoCash',
-    labels: ['Anonymous-Transfer'],
-    interaction: 'Deposit ETH',
-    icon: '',
-  },
-  feeTorrnaoCashWithdrawEth: {
-    name: 'TorrnadoCash',
-    labels: ['Anonymous-Transfer'],
-    interaction: 'Withdraw ETH',
-    icon: '',
-  },
-  feeAaveV2DepositEth: {
-    name: 'Aave',
-    labels: ['Lending'],
-    interaction: 'Deposit ETH',
-    icon: '',
-  },
-  feeAaveV2WithdrawEth: {
-    name: 'Aave',
-    labels: ['Lending'],
-    interaction: 'Withdraw ETH',
-    icon: '',
-  },
-  feeAaveV2BarrowEth: {
-    name: 'Aave',
-    labels: ['Lending'],
-    interaction: 'Barrow ETH',
-    icon: '',
-  },
-};
+import Transactions, { TransactionType } from 'data/transactions';
+import icons from 'components/icons';
 
 interface ListProps {
   data: any[];
@@ -192,20 +86,7 @@ const List: React.FC<ListProps> = ({ data, showRatio }) => {
             accessor: 'name',
             maxWidth: 70,
             minWidth: 70,
-            Cell: (props) => (
-              <SimpleRow
-                name={props.value}
-                icon={
-                  props.value === '1inch'
-                    ? icons.oneinch
-                    : props.value === 'Uniswap V3'
-                    ? icons.uniswap
-                    : props.value
-                    ? icons[props.value.toLowerCase()]
-                    : ''
-                }
-              />
-            ),
+            Cell: (props) => <SimpleRow name={props.value} icon={icons[props.value]} />,
           },
           {
             Header: 'Interaction',

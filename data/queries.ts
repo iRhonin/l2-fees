@@ -1,0 +1,18 @@
+export default [
+  'feeTransferEth',
+  'feeTransferERC20',
+  'feeSwap',
+  'feeUniswapV3SwapEthToUsdc',
+  'feeUniswapV3AddLiquidityEthUsdc',
+  'feeUniswapV3RemoveLiquidityEthUsdc',
+  'feeTorrnaoCashDepositEth',
+  'feeTorrnaoCashWithdrawEth',
+  'feeHopSendEth',
+  'feexPollinateSendEth',
+  'feeSushiSwapEthToUsdc',
+  'feeMatchaEthUsdc',
+  'feeAaveV2DepositEth',
+  'feeAaveV2WithdrawEth',
+  'feeAaveV2BarrowEth',
+  'fee1inchSwapEthToUsdc',
+];
