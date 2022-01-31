@@ -65,14 +65,14 @@ const List: React.FC<ListProps> = ({ data, showRatio }) => {
           // to build the toggle for expanding a row
           row.canExpand ? (
             <span
-              {...row.getToggleRowExpandedProps({
-                style: {
-                  // We can even use the row.depth property
-                  // and paddingLeft to indicate the depth
-                  // of the row
-                  // paddingLeft: `${row.depth * 2}rem`,
-                },
-              })}
+            // {...row.getToggleRowExpandedProps({
+            //   style: {
+            //     // We can even use the row.depth property
+            //     // and paddingLeft to indicate the depth
+            //     // of the row
+            //     // paddingLeft: `${row.depth * 2}rem`,
+            //   },
+            // })}
             >
               {row.isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </span>
