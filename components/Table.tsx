@@ -55,7 +55,11 @@ function Table({ columns, data }) {
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <StyledTableRow key={row.name} {...row.getRowProps()}>
+            <StyledTableRow
+              key={row.name}
+              {...row.getRowProps()}
+              onClick={() => row.toggleRowExpanded()}
+            >
               {row.cells.map((cell) => {
                 return (
                   <StyledTableCell key={cell} align="center" {...cell.getCellProps()}>
