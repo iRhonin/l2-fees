@@ -12,8 +12,8 @@ export function setup(sdk: Context) {
     id: 'ethereum',
     queries: {
       feeTransferEth: getFeeResolverForCost(21000),
-      feeSwap: getFeeResolverForCost(48000),
-      feeTransferERC20: getFeeResolverForCost(144348),
+      feeTransferERC20: getFeeResolverForCost(48000),
+      feeSwap: getFeeResolverForCost(144348),
       feeUniswapV3SwapEthToUsdc: getFeeResolverForCost(144348),
       feeUniswapV3AddLiquidityEthUsdc: getFeeResolverForCost(263442),
       feeUniswapV3RemoveLiquidityEthUsdc: getFeeResolverForCost(262926),
