@@ -20,7 +20,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <div className="container">
       <Head>
-        <title key="title">L2Fees.info</title>
+        <title key="title">L2now.info</title>
         <link rel="icon" href="/favicon.png" />
         <link href="https://use.typekit.net/jrq0bbf.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -30,7 +30,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
         />
       </Head>
 
-      <PlausibleProvider domain="l2fees.info">
+      <PlausibleProvider domain="L2now.info">
         <Header />
 
         <Component {...pageProps} />
