@@ -30,6 +30,9 @@ export function setup(sdk: Context) {
       feeSynthetixMintSusd: getFeeResolverForCost(446358),
       feeSynthetixBurnSusd: getFeeResolverForCost(502800),
       feeSynthetixClaimFees: getFeeResolverForCost(489779),
+      feeBalancerSwap: getFeeResolverForCost(135792),
+      feeBalancerAddLiquidity: getFeeResolverForCost(264811),
+      feeBalancerRemoveLiquidity: getFeeResolverForCost(279374),
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader(

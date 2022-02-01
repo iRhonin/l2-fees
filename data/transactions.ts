@@ -101,6 +101,21 @@ const Transactions: { [key: string]: TransactionType } = {
     labels: ['Derivatives'],
     interaction: 'Claim Fees',
   },
+  feeBalancerSwap: {
+    name: 'Balancer',
+    labels: ['DEX', 'AMM'],
+    interaction: 'Swap ETH+USDC',
+  },
+  feeBalancerAddLiquidity: {
+    name: 'Balancer',
+    labels: ['DEX', 'AMM'],
+    interaction: 'Add DAI+USDC+UDST',
+  },
+  feeBalancerRemoveLiquidity: {
+    name: 'Balancer',
+    labels: ['DEX', 'AMM'],
+    interaction: 'Remove DAI+USDC+UDST',
+  },
 };
 
 export default Transactions;
