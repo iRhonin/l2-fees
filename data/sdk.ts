@@ -5,7 +5,7 @@ const sdk = new CryptoStatsSDK({
   adapterListSubgraph: 'dmihal/cryptostats-adapter-registry-test',
 });
 
-sdk.ethers.addProvider('arbitrum-one', 'https://arb1.arbitrum.io/rpc');
+sdk.ethers.addProvider('arbitrum-one', 'https://rpc.ankr.com/arbitrum');
 sdk.ethers.addProvider('optimism', 'https://mainnet.optimism.io');
 
 export default sdk;

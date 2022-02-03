@@ -13,7 +13,7 @@ Where:
 */
 
 import { Context } from '@cryptostats/sdk';
-import { getEthPrice } from './utils';
+import { getEthPrice, getOptimisimGasPrice } from './utils';
 
 export function setup(sdk: Context) {
   const OP_GAS_PREDEPLOY = '0x420000000000000000000000000000000000000F';
@@ -43,7 +43,7 @@ export function setup(sdk: Context) {
   const gasPredeployContract = sdk.ethers.getContract(OP_GAS_PREDEPLOY, OP_GAS_ABI, 'optimism');
 
   const getTransferEthCost = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 21000;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -59,7 +59,7 @@ export function setup(sdk: Context) {
   };
 
   const getTransferTokenCost = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 45690;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -76,7 +76,7 @@ export function setup(sdk: Context) {
   };
 
   const getUniswapV3SwapEthToUsdc = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 217112;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -93,7 +93,7 @@ export function setup(sdk: Context) {
   };
 
   const getUniswapV3AddLiquidityEthUsdc = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 529111;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -110,7 +110,7 @@ export function setup(sdk: Context) {
   };
 
   const getUniswapV3RemoveLiquidityEthUsdc = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 501698;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -127,7 +127,7 @@ export function setup(sdk: Context) {
   };
 
   const getMatchaEthUsdc = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 364883;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -144,7 +144,7 @@ export function setup(sdk: Context) {
   };
 
   const getHopSendEth = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 407001;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -161,7 +161,7 @@ export function setup(sdk: Context) {
   };
 
   const getxPollinateSendEth = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 102154;
     const l1GasCostTx1 = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -178,7 +178,7 @@ export function setup(sdk: Context) {
   };
 
   const getTorrnaoCashDepositEth = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 1127525;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -195,7 +195,7 @@ export function setup(sdk: Context) {
   };
 
   const getTorrnaoCashWithdrawEth = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 366184;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -212,7 +212,7 @@ export function setup(sdk: Context) {
   };
 
   const getSynthetixMintSusd = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 612946;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -228,7 +228,7 @@ export function setup(sdk: Context) {
   };
 
   const getSynthetixBurnSusd = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 745074;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -244,7 +244,7 @@ export function setup(sdk: Context) {
   };
 
   const getSynthetixClaimFees = async () => {
-    const l2GasPrice = await provider.getGasPrice();
+    const l2GasPrice = await getOptimisimGasPrice(provider);
     const l2GasEstimate = 790005;
     const l1GasCost = await gasPredeployContract.getL1Fee(
       sdk.ethers.utils.serializeTransaction({
@@ -302,7 +302,7 @@ export function setup(sdk: Context) {
 
   async function calcTotalGasFee(l2GasPrice, l2GasEstimate: number, l1GasCost: any) {
     const totalGasCostWei = l2GasPrice.mul(l2GasEstimate).add(l1GasCost).toNumber();
-    const ethPrice = await getEthPrice(sdk);
+    const ethPrice = await getEthPrice();
     return (totalGasCostWei * ethPrice) / 1e18;
   }
 }

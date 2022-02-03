@@ -4,7 +4,6 @@ export function setup(sdk: Context) {
   const getFeeForTransfer = async () => {
     const url = 'https://api.hermez.io/v1/state';
     const feeData = await sdk.http.get(url);
-
     return feeData.recommendedFee.existingAccount;
   };
 

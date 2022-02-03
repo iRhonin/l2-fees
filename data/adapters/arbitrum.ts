@@ -1,4 +1,5 @@
 import { Context } from '@cryptostats/sdk';
+import sdk from 'data/sdk';
 import { getEthPrice } from './utils';
 
 const ARB_GAS_PRECOMPILE = '0x000000000000000000000000000000000000006C';
@@ -7,20 +8,26 @@ const ARB_GAS_ABI = [
   'function getPricesInWei() external view returns (uint256,uint256,uint256,uint256,uint256,uint256)',
 ];
 
-export function setup(sdk: Context) {
-  const getFeeResolverForCost = (gasAmt: number) => async () => {
+let arbitrumGasPrice: number;
+
+export const getArbitrumGasPrice = async () => {
+  if (!arbitrumGasPrice) {
     const gasPrecompileContract = sdk.ethers.getContract(
       ARB_GAS_PRECOMPILE,
       ARB_GAS_ABI,
       'arbitrum-one'
     );
+    arbitrumGasPrice = (await gasPrecompileContract.getPricesInWei())[5];
+  }
+  return arbitrumGasPrice;
+};
 
-    const weiPerArbGas = (await gasPrecompileContract.getPricesInWei())[5];
-    const ethPrice = await getEthPrice(sdk);
+export function setup(sdk: Context) {
+  const getFeeResolverForCost = (gasAmt: number) => async () => {
+    const [weiPerArbGas, ethPrice] = await Promise.all([getArbitrumGasPrice(), getEthPrice()]);
     return (weiPerArbGas * gasAmt * ethPrice) / 1e18;
   };
 
-  sdk.plugins;
   sdk.register({
     id: 'arbitrum-one',
     queries: {

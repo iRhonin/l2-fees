@@ -6,6 +6,8 @@ import List from 'components/List';
 import SocialTags from 'components/SocialTags';
 import { FormControlLabel, Switch } from '@material-ui/core';
 import queries from 'data/queries';
+import { getEthGasPrice, getEthPrice, getOptimisimGasPrice } from 'data/adapters/utils';
+import { getArbitrumGasPrice } from 'data/adapters/arbitrum';
 
 interface HomeProps {
   data: any[];
@@ -83,8 +85,17 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const list = sdk.getList('l2-fees');
+
+  const provider = sdk.ethers.getProvider('optimism');
+  await Promise.all([
+    getEthPrice(),
+    getEthGasPrice(),
+    getArbitrumGasPrice(),
+    getOptimisimGasPrice(provider),
+  ]);
+
   const data = await list.executeQueriesWithMetadata(queries, { allowMissingQuery: true });
-  return { props: { data }, revalidate: 5 * 60 };
+  return { props: { data }, revalidate: 60 };
 };
 
 export default Home;

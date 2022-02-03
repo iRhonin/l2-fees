@@ -1,10 +1,10 @@
 import { Context } from '@cryptostats/sdk';
-import { getEthPrice } from './utils';
+import { getEthGasPrice, getEthPrice } from './utils';
 
 export function setup(sdk: Context) {
   const getFeeResolverForCost = (gasAmt: number) => async () => {
-    const gasData = await sdk.http.get('https://app.defisaver.com/api/gas-price/current');
-    const ethPrice = await getEthPrice(sdk);
+    const gasData = await getEthGasPrice();
+    const ethPrice = await getEthPrice();
     return (gasData.regular * gasAmt * ethPrice) / 1e9;
   };
 
