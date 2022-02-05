@@ -33,7 +33,7 @@ export function setup(sdk: Context) {
     queries: {
       feeTransferEth: getFeeResolverForCost(412620),
       feeSwap: getFeeResolverForCost(708377),
-      feeTransferERC20: getFeeResolverForCost(708377),
+      feeTransferERC20: getFeeResolverForCost(534848),
       feeUniswapV3SwapEthToUsdc: getFeeResolverForCost(665117),
       feeUniswapV3AddLiquidityEthUsdc: getFeeResolverForCost(1734848),
       feeUniswapV3RemoveLiquidityEthUsdc: getFeeResolverForCost(1070865),
