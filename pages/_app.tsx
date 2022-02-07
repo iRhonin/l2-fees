@@ -21,7 +21,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     <div className="container">
       <Head>
         <title key="title">L2now.info</title>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <link href="https://use.typekit.net/jrq0bbf.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
