@@ -86,12 +86,12 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const list = sdk.getList('l2-fees');
 
-  const provider = sdk.ethers.getProvider('optimism');
+  const optimismProvider = sdk.ethers.getProvider('optimism');
   await Promise.all([
     getEthPrice(),
     getEthGasPrice(),
     getArbitrumGasPrice(),
-    getOptimisimGasPrice(provider),
+    getOptimisimGasPrice(optimismProvider),
   ]);
 
   const data = await list.executeQueriesWithMetadata(queries, { allowMissingQuery: true });
