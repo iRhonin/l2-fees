@@ -11,6 +11,7 @@ import Aave from './aave.svg';
 import TornadoCash from './tornadocash.png';
 import Synthetix from './synthetix.svg';
 import Balancer from './balancer.png';
+import Cream from './cream.png';
 
 // Legacy, don't add new icons here
 const icons: { [id: string]: string } = {
@@ -27,6 +28,7 @@ const icons: { [id: string]: string } = {
   TornadoCash,
   Synthetix,
   Balancer,
+  Cream,
 };
 
 export default icons;

@@ -35,8 +35,9 @@ const List: React.FC<ListProps> = ({ data, showRatio }) => {
           _data[q][network.metadata.l2BeatSlug] =
             network.results[q] > 0.01 ? '$' + network.results[q].toFixed(2) : '< $0.01';
         } else {
-          _data[q][network.metadata.l2BeatSlug] =
-            (refrenceNetwork.results[q] / network.results[q]).toFixed(2) + 'X';
+          _data[q][network.metadata.l2BeatSlug] = refrenceNetwork.results[q]
+            ? (refrenceNetwork.results[q] / network.results[q]).toFixed(2) + 'X'
+            : '-';
         }
       }
     });

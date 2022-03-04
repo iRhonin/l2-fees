@@ -50,6 +50,11 @@ export function setup(sdk: Context) {
       feeBalancerSwap: getFeeResolverForCost(817836),
       feeBalancerAddLiquidity: getFeeResolverForCost(1123305),
       feeBalancerRemoveLiquidity: getFeeResolverForCost(1008976),
+      feeCreamSupplyUsdc: getFeeResolverForCost(607827),
+      feeCreamBarrowUsdc: getFeeResolverForCost(835247),
+      feeCreamRepayUsdc: getFeeResolverForCost(541572),
+      feeCreamEnterMarket: getFeeResolverForCost(643418),
+      feeCreamExitMarket: getFeeResolverForCost(490108),
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader(

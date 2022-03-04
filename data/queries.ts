@@ -21,4 +21,10 @@ export default [
   'feeAaveV2DepositEth',
   'feeAaveV2WithdrawEth',
   'feeAaveV2BarrowEth',
+  'feeAaveV2BarrowEth',
+  'feeCreamSupplyUsdc',
+  'feeCreamBarrowUsdc',
+  'feeCreamRepayUsdc',
+  'feeCreamEnterMarket',
+  'feeCreamExitMarket',
 ];

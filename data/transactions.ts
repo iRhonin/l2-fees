@@ -116,6 +116,31 @@ const Transactions: { [key: string]: TransactionType } = {
     labels: ['DEX', 'AMM'],
     interaction: 'Remove DAI+USDC+UDST',
   },
+  feeCreamSupplyUsdc: {
+    name: 'Cream',
+    labels: ['Lending'],
+    interaction: 'Supply USDC',
+  },
+  feeCreamBarrowUsdc: {
+    name: 'Cream',
+    labels: ['Lending'],
+    interaction: 'Barrow USDC',
+  },
+  feeCreamRepayUsdc: {
+    name: 'Cream',
+    labels: ['Lending'],
+    interaction: 'Repay USDC',
+  },
+  feeCreamEnterMarket: {
+    name: 'Cream',
+    labels: ['Lending'],
+    interaction: 'Enter Market',
+  },
+  feeCreamExitMarket: {
+    name: 'Cream',
+    labels: ['Lending'],
+    interaction: 'Exit Market',
+  },
 };
 
 export default Transactions;
