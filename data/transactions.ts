@@ -71,17 +71,17 @@ const Transactions: { [key: string]: TransactionType } = {
     labels: ['Anonymous-Transfer'],
     interaction: 'Withdraw ETH',
   },
-  feeAaveV2DepositEth: {
+  feeAaveDepositEth: {
     name: 'Aave',
     labels: ['Lending'],
     interaction: 'Deposit ETH',
   },
-  feeAaveV2WithdrawEth: {
+  feeAaveWithdrawEth: {
     name: 'Aave',
     labels: ['Lending'],
     interaction: 'Withdraw ETH',
   },
-  feeAaveV2BarrowEth: {
+  feeAaveBarrowEth: {
     name: 'Aave',
     labels: ['Lending'],
     interaction: 'Barrow ETH',

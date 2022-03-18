@@ -259,6 +259,57 @@ export function setup(sdk: Context) {
     return await calcTotalGasFee(l2GasPrice, l2GasEstimate, l1GasCost);
   };
 
+  const getAaveDepositEth = async () => {
+    const l2GasPrice = await getOptimisimGasPrice(provider);
+    const l2GasEstimate = 174814;
+    const l1GasCost = await gasPredeployContract.getL1Fee(
+      sdk.ethers.utils.serializeTransaction({
+        nonce: 1234,
+        value: '0x',
+        gasPrice: l2GasPrice,
+        gasLimit: l2GasEstimate,
+        to: '0x86b4d2636ec473ac4a5dd83fc2beda98845249a7',
+        data:
+          '0x474cf53d000000000000000000000000794a61358d6845594f94dc1db02a252b5b4814ad00000000000000000000000018ae9fc06bed0637b1d46063d6b7af1a4f97b02c0000000000000000000000000000000000000000000000000000000000000000',
+      })
+    );
+    return await calcTotalGasFee(l2GasPrice, l2GasEstimate, l1GasCost);
+  };
+
+  const getAaveWithdrawEth = async () => {
+    const l2GasPrice = await getOptimisimGasPrice(provider);
+    const l2GasEstimate = 248789;
+    const l1GasCost = await gasPredeployContract.getL1Fee(
+      sdk.ethers.utils.serializeTransaction({
+        nonce: 1234,
+        value: '0x',
+        gasPrice: l2GasPrice,
+        gasLimit: l2GasEstimate,
+        to: '0x86b4d2636ec473ac4a5dd83fc2beda98845249a7',
+        data:
+          '0x80500d20000000000000000000000000794a61358d6845594f94dc1db02a252b5b4814adffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000000000000000279aa35a1842ee1a9f1cd74592974fc59d005768',
+      })
+    );
+    return await calcTotalGasFee(l2GasPrice, l2GasEstimate, l1GasCost);
+  };
+
+  const getAaveBarrowEth = async () => {
+    const l2GasPrice = await getOptimisimGasPrice(provider);
+    const l2GasEstimate = 262691;
+    const l1GasCost = await gasPredeployContract.getL1Fee(
+      sdk.ethers.utils.serializeTransaction({
+        nonce: 1234,
+        value: '0x',
+        gasPrice: l2GasPrice,
+        gasLimit: l2GasEstimate,
+        to: '0x86b4d2636ec473ac4a5dd83fc2beda98845249a7',
+        data:
+          '0x66514c97000000000000000000000000794a61358d6845594f94dc1db02a252b5b4814ad00000000000000000000000000000000000000000000000000005af3107a400000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000',
+      })
+    );
+    return await calcTotalGasFee(l2GasPrice, l2GasEstimate, l1GasCost);
+  };
+
   sdk.register({
     id: 'optimistic-ethereum',
     queries: {
@@ -273,9 +324,9 @@ export function setup(sdk: Context) {
       feeMatchaEthUsdc: getMatchaEthUsdc,
       feeHopSendEth: getHopSendEth,
       feexPollinateSendEth: getxPollinateSendEth,
-      // //   feeAaveV2DepositEth: getFeeResolverForCost(240970),
-      // //   feeAaveV2WithdrawEth: getFeeResolverForCost(902530),
-      // //   feeAaveV2BarrowEth: getFeeResolverForCost(454266),
+      feeAaveDepositEth: getAaveDepositEth,
+      feeAaveWithdrawEth: getAaveWithdrawEth,
+      feeAaveBarrowEth: getAaveBarrowEth,
       feeTorrnaoCashDepositEth: getTorrnaoCashDepositEth,
       feeTorrnaoCashWithdrawEth: getTorrnaoCashWithdrawEth,
       feeSynthetixMintSusd: getSynthetixMintSusd,
